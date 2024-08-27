@@ -55,9 +55,12 @@ export const nikParser = (nik: string): NikDetail => ({
   },
 
   lahir: (): Date => {
-    const year = Number(nik.substring(10, 12))
+    const yearPart = Number(nik.substring(10, 12))
     const month = Number(nik.substring(8, 10))
     const date = Number(nik.substring(6, 8))
+
+    // Menentukan tahun kelahiran    
+    const year = yearPart <= 21 ? 2000 + yearPart : 1900 + yearPart
 
     return new Date(year, month - 1, date)
   },
